@@ -10,7 +10,16 @@ async function bootstrap() {
     .setDescription('steph API Project')
     .setVersion('1.0')
     .addTag('api')
-    .build();
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+      name: 'Authorization',
+      description: 'Enter your bearer token',
+    } )
+    .addSecurityRequirements('bearer')
+    .build(); 
 
   const document = SwaggerModule.createDocument(app, config);
 
